@@ -20,12 +20,18 @@ import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.PropertyChangeWeakSupport;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.KeyStroke;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,8 +43,6 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 public class AppPreferences {
   //
@@ -49,8 +53,8 @@ public class AppPreferences {
       Locale[] check;
       for (int set = 0; set < 2; set++) {
         check = (set == 0)
-          ? new Locale[] {Locale.getDefault(), Locale.ENGLISH}
-          : Locale.getAvailableLocales();
+            ? new Locale[]{Locale.getDefault(), Locale.ENGLISH}
+            : Locale.getAvailableLocales();
         for (Locale loc : check) {
           if (loc != null && loc.getLanguage().equals(lang)) {
             return loc;
@@ -447,7 +451,7 @@ public class AppPreferences {
   public static final PrefMonitor<String> GATE_SHAPE =
       create(
           new PrefMonitorStringOpts(
-              "gateShape", new String[] {SHAPE_SHAPED, SHAPE_RECTANGULAR}, SHAPE_SHAPED));
+              "gateShape", new String[]{SHAPE_SHAPED, SHAPE_RECTANGULAR}, SHAPE_SHAPED));
   public static final PrefMonitor<String> LOCALE = create(new LocalePreference());
 
   // FPGA Commander Preferences
@@ -459,7 +463,7 @@ public class AppPreferences {
       create(
           new PrefMonitorStringOpts(
               "afterAdd",
-              new String[] {HdlGeneratorFactory.VHDL, HdlGeneratorFactory.VERILOG},
+              new String[]{HdlGeneratorFactory.VHDL, HdlGeneratorFactory.VERILOG},
               HdlGeneratorFactory.VHDL));
   public static final PrefMonitor<String> SelectedBoard =
       create(new PrefMonitorString("SelectedBoard", null));
@@ -483,12 +487,12 @@ public class AppPreferences {
       create(
           new PrefMonitorStringOpts(
               "toolbarPlacement",
-              new String[] {
-                Direction.NORTH.toString(),
-                Direction.SOUTH.toString(),
-                Direction.EAST.toString(),
-                Direction.WEST.toString(),
-                TOOLBAR_HIDDEN
+              new String[]{
+                  Direction.NORTH.toString(),
+                  Direction.SOUTH.toString(),
+                  Direction.EAST.toString(),
+                  Direction.WEST.toString(),
+                  TOOLBAR_HIDDEN
               },
               Direction.NORTH.toString()));
 
@@ -496,9 +500,9 @@ public class AppPreferences {
       create(
           new PrefMonitorStringOpts(
               "canvasPlacement",
-              new String[] {
-                      Direction.EAST.toString(),
-                      Direction.WEST.toString()},
+              new String[]{
+                  Direction.EAST.toString(),
+                  Direction.WEST.toString()},
               Direction.EAST.toString()));
 
   public static final PrefMonitor<String> LookAndFeel =
@@ -538,7 +542,7 @@ public class AppPreferences {
       create(new PrefMonitorInt("componentSecondaryColor", DEFAULT_COMPONENT_SECONDARY_COLOR));
   public static final PrefMonitor<Integer> COMPONENT_GHOST_COLOR =
       create(new PrefMonitorInt("componentGhostColor", DEFAULT_COMPONENT_GHOST_COLOR));
-  
+
 
   // Layout preferences
   public static final String ADD_AFTER_UNCHANGED = "unchanged";
@@ -559,10 +563,10 @@ public class AppPreferences {
       create(
           new PrefMonitorStringOpts(
               "defaultAppearance",
-              new String[] {
-                StdAttr.APPEAR_CLASSIC.toString(),
-                StdAttr.APPEAR_FPGA.toString(),
-                StdAttr.APPEAR_EVOLUTION.toString()
+              new String[]{
+                  StdAttr.APPEAR_CLASSIC.toString(),
+                  StdAttr.APPEAR_FPGA.toString(),
+                  StdAttr.APPEAR_EVOLUTION.toString()
               },
               StdAttr.APPEAR_EVOLUTION.toString()));
 
@@ -585,9 +589,9 @@ public class AppPreferences {
 
   public static double getAutoScaleFactor() {
     return (((!GraphicsEnvironment.isHeadless())
-                  ? Toolkit.getDefaultToolkit().getScreenSize().getHeight()
-                  : 0)
-              / 1000);
+        ? Toolkit.getDefaultToolkit().getScreenSize().getHeight()
+        : 0)
+        / 1000);
   }
 
   public static final PrefMonitor<Double> SCALE_FACTOR =
@@ -600,7 +604,7 @@ public class AppPreferences {
   public static final PrefMonitor<String> ADD_AFTER =
       create(
           new PrefMonitorStringOpts(
-              "afterAdd", new String[] {ADD_AFTER_EDIT, ADD_AFTER_UNCHANGED}, ADD_AFTER_EDIT));
+              "afterAdd", new String[]{ADD_AFTER_EDIT, ADD_AFTER_UNCHANGED}, ADD_AFTER_EDIT));
 
   public static final String PIN_APPEAR_DOT_SMALL = "dot-small";
   public static final String PIN_APPEAR_DOT_MEDIUM = "dot-medium";
@@ -610,11 +614,11 @@ public class AppPreferences {
       create(
           new PrefMonitorStringOpts(
               "pinAppearance",
-              new String[] {
-                PIN_APPEAR_DOT_SMALL,
-                PIN_APPEAR_DOT_MEDIUM,
-                PIN_APPEAR_DOT_BIG,
-                PIN_APPEAR_DOT_BIGGER
+              new String[]{
+                  PIN_APPEAR_DOT_SMALL,
+                  PIN_APPEAR_DOT_MEDIUM,
+                  PIN_APPEAR_DOT_BIG,
+                  PIN_APPEAR_DOT_BIGGER
               },
               PIN_APPEAR_DOT_SMALL));
 
@@ -738,7 +742,7 @@ public class AppPreferences {
       create(
           new PrefMonitorStringOpts(
               "graphicsAcceleration",
-              new String[] {ACCEL_DEFAULT, ACCEL_NONE, ACCEL_OPENGL, ACCEL_D3D},
+              new String[]{ACCEL_DEFAULT, ACCEL_NONE, ACCEL_OPENGL, ACCEL_D3D},
               ACCEL_DEFAULT));
   public static final PrefMonitor<Boolean> AntiAliassing =
       create(new PrefMonitorBoolean("AntiAliassing", true));
@@ -788,8 +792,8 @@ public class AppPreferences {
           new PrefMonitorInt(
               "windowWidth",
               ((!GraphicsEnvironment.isHeadless())
-                      ? Toolkit.getDefaultToolkit().getScreenSize().width
-                      : 0)
+                  ? Toolkit.getDefaultToolkit().getScreenSize().width
+                  : 0)
                   / 2));
 
   public static final PrefMonitor<Integer> WINDOW_HEIGHT =
@@ -821,4 +825,129 @@ public class AppPreferences {
 
   public static final PrefMonitor<String> DIALOG_DIRECTORY =
       create(new PrefMonitorString("dialogDirectory", ""));
+
+  /* Hotkey Settings */
+  private static final int hotkeyMenuMask = new JMenu().getToolkit().getMenuShortcutKeyMaskEx();
+  public static final PrefMonitor<KeyStroke> HOTKEY_SIM_AUTO_PROPAGATE =
+      create(new PrefMonitorKeyStroke("hotkeySimAutoPropagate", KeyEvent.VK_E, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_SIM_RESET =
+      create(new PrefMonitorKeyStroke("hotkeySimReset", KeyEvent.VK_R, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_SIM_STEP =
+      create(new PrefMonitorKeyStroke("hotkeySimStep", KeyEvent.VK_I, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_SIM_TICK_HALF =
+      create(new PrefMonitorKeyStroke("hotkeySimTickHalf", KeyEvent.VK_T, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_SIM_TICK_FULL =
+      create(new PrefMonitorKeyStroke("hotkeySimTickFull", KeyEvent.VK_F9, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_SIM_TICK_ENABLED =
+      create(new PrefMonitorKeyStroke("hotkeySimTickEnabled", KeyEvent.VK_K, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_EDIT_UNDO =
+      create(new PrefMonitorKeyStroke("hotkeyEditUndo", KeyEvent.VK_Z, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_EDIT_REDO =
+      create(new PrefMonitorKeyStroke("hotkeyEditRedo",
+          KeyEvent.VK_Z, KeyEvent.SHIFT_DOWN_MASK | hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_FILE_EXPORT =
+      create(new PrefMonitorKeyStroke("hotkeyFileExport",
+          KeyEvent.VK_E, KeyEvent.SHIFT_DOWN_MASK | hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_FILE_PRINT =
+      create(new PrefMonitorKeyStroke("hotkeyFilePrint", KeyEvent.VK_P, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_FILE_QUIT =
+      create(new PrefMonitorKeyStroke("hotkeyFileQuit", KeyEvent.VK_Q, hotkeyMenuMask));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_DIR_NORTH =
+      create(new PrefMonitorKeyStroke("hotkeyDirNorth", KeyEvent.VK_UP, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_DIR_SOUTH =
+      create(new PrefMonitorKeyStroke("hotkeyDirSouth", KeyEvent.VK_DOWN, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_DIR_EAST =
+      create(new PrefMonitorKeyStroke("hotkeyDirEast", KeyEvent.VK_RIGHT, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_DIR_WEST =
+      create(new PrefMonitorKeyStroke("hotkeyDirWest", KeyEvent.VK_LEFT, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_EDIT_TOOL_DUPLICATE =
+      create(new PrefMonitorKeyStroke("hotkeyEditToolDuplicate", KeyEvent.VK_INSERT, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_AUTO_LABEL_OPEN =
+      create(new PrefMonitorKeyStroke("hotkeyAutoLabelOpen", KeyEvent.VK_L, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_AUTO_LABEL_TOGGLE =
+      create(new PrefMonitorKeyStroke("hotkeyAutoLabelToggle", KeyEvent.VK_T, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_AUTO_LABEL_VIEW =
+      create(new PrefMonitorKeyStroke("hotkeyAutoLabelView", KeyEvent.VK_V, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_AUTO_LABEL_HIDE =
+      create(new PrefMonitorKeyStroke("hotkeyAutoLabelHide", KeyEvent.VK_H, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_AUTO_LABEL_SELF_NUMBERED_STOP =
+      create(new PrefMonitorKeyStroke("hotkeyAutoLabelSelfNumberedStop", KeyEvent.VK_A, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_ADD_TOOL_ROTATE =
+      create(new PrefMonitorKeyStroke("hotkeyAddToolRotate", KeyEvent.VK_R, 0));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_GATE_MODIFIER_SIZE_SMALL =
+      create(new PrefMonitorKeyStroke("hotkeyGateModifierSizeSmall", KeyEvent.VK_S, 0, false));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_GATE_MODIFIER_SIZE_MEDIUM =
+      create(new PrefMonitorKeyStroke("hotkeyGateModifierSizeMedium", KeyEvent.VK_M, 0, false));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_GATE_MODIFIER_SIZE_WIDE =
+      create(new PrefMonitorKeyStroke("hotkeyGateModifierSizeWide", KeyEvent.VK_W, 0, false));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_GATE_MODIFIER_INPUT_ADD =
+      create(new PrefMonitorKeyStroke("hotkeyGateModifierInputAdd",
+          KeyEvent.VK_ADD, 0, false));
+
+  public static final PrefMonitor<KeyStroke> HOTKEY_GATE_MODIFIER_INPUT_SUB =
+      create(new PrefMonitorKeyStroke("hotkeyGateModifierInputSub",
+          KeyEvent.VK_SUBTRACT, 0, false));
+
+  public static void resetHotkeys() {
+    try {
+      int menuMask = hotkeyMenuMask;
+      HOTKEY_SIM_AUTO_PROPAGATE.set(KeyStroke.getKeyStroke(KeyEvent.VK_E, menuMask));
+      HOTKEY_SIM_RESET.set(KeyStroke.getKeyStroke(KeyEvent.VK_R, menuMask));
+      HOTKEY_SIM_STEP.set(KeyStroke.getKeyStroke(KeyEvent.VK_I, menuMask));
+      HOTKEY_SIM_TICK_HALF.set(KeyStroke.getKeyStroke(KeyEvent.VK_T, menuMask));
+      HOTKEY_SIM_TICK_FULL.set(KeyStroke.getKeyStroke(KeyEvent.VK_F9, menuMask));
+      HOTKEY_SIM_TICK_ENABLED.set(KeyStroke.getKeyStroke(KeyEvent.VK_K, menuMask));
+      HOTKEY_EDIT_UNDO.set(KeyStroke.getKeyStroke(KeyEvent.VK_Z, menuMask));
+      HOTKEY_EDIT_REDO.set(KeyStroke.getKeyStroke(KeyEvent.VK_Z,
+          KeyEvent.SHIFT_DOWN_MASK | menuMask));
+      HOTKEY_FILE_EXPORT.set(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+          KeyEvent.SHIFT_DOWN_MASK | menuMask));
+      HOTKEY_FILE_PRINT.set(KeyStroke.getKeyStroke(KeyEvent.VK_P, menuMask));
+      HOTKEY_FILE_QUIT.set(KeyStroke.getKeyStroke(KeyEvent.VK_Q, menuMask));
+      HOTKEY_DIR_NORTH.set(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0));
+      HOTKEY_DIR_SOUTH.set(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0));
+      HOTKEY_DIR_EAST.set(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0));
+      HOTKEY_DIR_WEST.set(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0));
+      HOTKEY_EDIT_TOOL_DUPLICATE.set(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, 0));
+      HOTKEY_AUTO_LABEL_OPEN.set(KeyStroke.getKeyStroke(KeyEvent.VK_L, 0));
+      HOTKEY_AUTO_LABEL_TOGGLE.set(KeyStroke.getKeyStroke(KeyEvent.VK_T, 0));
+      HOTKEY_AUTO_LABEL_VIEW.set(KeyStroke.getKeyStroke(KeyEvent.VK_V, 0));
+      HOTKEY_AUTO_LABEL_HIDE.set(KeyStroke.getKeyStroke(KeyEvent.VK_H, 0));
+      HOTKEY_ADD_TOOL_ROTATE.set(KeyStroke.getKeyStroke(KeyEvent.VK_R, 0));
+      HOTKEY_GATE_MODIFIER_SIZE_SMALL.set(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
+      HOTKEY_GATE_MODIFIER_SIZE_MEDIUM.set(KeyStroke.getKeyStroke(KeyEvent.VK_M, 0));
+      HOTKEY_GATE_MODIFIER_SIZE_WIDE.set(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0));
+      HOTKEY_GATE_MODIFIER_INPUT_ADD.set(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, 0));
+      HOTKEY_GATE_MODIFIER_INPUT_SUB.set(KeyStroke.getKeyStroke(KeyEvent.VK_SUBTRACT, 0));
+      HOTKEY_AUTO_LABEL_SELF_NUMBERED_STOP.set(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
+      AppPreferences.getPrefs().flush();
+    } catch (BackingStoreException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
